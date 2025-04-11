@@ -386,6 +386,9 @@ export class VsCodeLmHandler implements ApiHandler, SingleCompletionHandler {
 		)
 	}
 
+	/**
+	 * @todo-yusheng 型別也許可以優化
+	 */
 	private cleanMessageContent(content: any): any {
 		if (!content) {
 			return content

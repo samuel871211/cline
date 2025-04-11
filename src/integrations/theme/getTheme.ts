@@ -73,9 +73,11 @@ export async function getTheme() {
 
 		const converted = convertTheme(parsed)
 
-		converted.base = (
-			["vs", "hc-black"].includes(converted.base) ? converted.base : colorTheme.includes("Light") ? "vs" : "vs-dark"
-		) as any
+		converted.base = ["vs", "hc-black"].includes(converted.base)
+			? converted.base
+			: colorTheme.includes("Light")
+				? "vs"
+				: "vs-dark"
 
 		return converted
 	} catch (e) {
@@ -85,6 +87,7 @@ export async function getTheme() {
 }
 
 type JsonObject = { [key: string]: any }
+
 export function mergeJson(
 	first: JsonObject,
 	second: JsonObject,

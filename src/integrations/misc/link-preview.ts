@@ -1,5 +1,6 @@
 import axios from "axios"
 import ogs from "open-graph-scraper"
+import { OpenGraphScraperOptions } from "open-graph-scraper/types"
 
 export interface OpenGraphData {
 	title?: string
@@ -17,16 +18,16 @@ export interface OpenGraphData {
  */
 export async function fetchOpenGraphData(url: string): Promise<OpenGraphData> {
 	try {
-		const options = {
+		const options: OpenGraphScraperOptions = {
 			url: url,
 			timeout: 5000,
-			headers: {
-				"user-agent": "Mozilla/5.0 (compatible; VSCodeExtension/1.0; +https://cline.bot)",
-			},
 			onlyGetOpenGraphInfo: false, // Get all metadata, not just Open Graph
 			fetchOptions: {
 				redirect: "follow", // Follow redirects
-			} as any,
+				headers: {
+					"user-agent": "Mozilla/5.0 (compatible; VSCodeExtension/1.0; +https://cline.bot)",
+				},
+			},
 		}
 
 		const { result } = await ogs(options)
